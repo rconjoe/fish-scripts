@@ -1,0 +1,34 @@
+#!/opt/homebrew/bin//fish
+
+function read_confirm -a prompt_string
+  while true
+    read -l -P "$prompt_string [y/N] " confirm
+
+    switch $confirm
+      case '' Y y
+        return 0
+      case N n
+        echo 'fine.'
+        return 1
+    end
+  end
+end
+
+set_color red 
+echo "STASH" 
+set_color yellow
+echo "PULL"
+echo "POP"
+set_color normal
+
+if read_confirm 'stash?'
+  git stash
+  if read_confirm 'stashed. pull?'
+    git pull
+    if read_confirm 'pulled. pop?'
+      git stash pop
+      echo "You're all synced. Have fun, dork."
+    end
+  end
+end
+
