@@ -18,7 +18,10 @@ set_color red
 echo "STASH" 
 set_color yellow
 echo "PULL"
+set_color blue 
 echo "POP"
+set_color green
+echo "joe@rconjoe.com"
 set_color normal
 
 if read_confirm 'stash?'
